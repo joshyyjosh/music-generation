@@ -1,13 +1,15 @@
-"use client"
+"use client";
 
-import { usePathname } from "next/navigation"
-import { BreadcrumbPage } from "../ui/breadcrumb"
+import { usePathname } from "next/navigation";
+import { BreadcrumbPage } from "../ui/breadcrumb";
 
 export default function BreadcrumbPageClient() {
-  const path = usePathname()
+  const path = usePathname();
 
-  return <BreadcrumbPage></BreadcrumbPage>
+  return (
+    <BreadcrumbPage>
+      {path === "/" && "Home"}
+      {path === "/create" && "Create"}
+    </BreadcrumbPage>
+  );
 }
-
-
-

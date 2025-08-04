@@ -1,14 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@source "../node_modules/@daveyplate/better-auth-ui";
-
 @custom-variant dark (&:is(.dark *));
 
 @source "../../node_modules/@daveyplate/better-auth-ui";
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+  --font-sans:
+    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -126,9 +125,6 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-@layer base {
   :root {
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
@@ -151,4 +147,3 @@
     --sidebar-ring: oklch(0.439 0 0);
   }
 }
- 

@@ -1,8 +1,10 @@
-import Link from "next/link";
+import { Loader2 } from "lucide-react";
 import { headers } from "next/headers";
-import { auth } from "~/lib/auth";
 import { redirect } from "next/navigation";
-import CreateSong from "~/components/create";
+import { Suspense } from "react";
+import { SongPanel } from "~/components/create/song-panel";
+import TrackListFetcher from "~/components/create/track-list-fetcher";
+import { auth } from "~/lib/auth";
 
 export default async function Page() {
   const session = await auth.api.getSession({
@@ -13,11 +15,18 @@ export default async function Page() {
     redirect("/auth/sign-in");
   }
 
-  
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <p>Create</p>
-      <CreateSong />
-    </main>
+    <div className="flex h-full flex-col lg:flex-row">
+      <SongPanel />
+      <Suspense
+        fallback={
+          <div className="flex h-full w-full items-center justify-center">
+            <Loader2 className="h-8 w-8 animate-spin" />
+          </div>
+        }
+      >
+        <TrackListFetcher />
+      </Suspense>
+    </div>
   );
 }
